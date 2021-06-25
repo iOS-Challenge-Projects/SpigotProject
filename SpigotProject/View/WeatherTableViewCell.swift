@@ -9,15 +9,36 @@ import UIKit
 
 class WeatherTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // MARK: - Properties
+    var index: Int?
+    var network: Network?{
+        didSet{
+            updateUI()
+        }
     }
+    
+    // MARK: - Outlets
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var eventNameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var sourceLabel: UILabel!
+    
+    
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    // MARK: - Private Methods
+    func updateUI() {
+        guard let network = network, let weather = network.weatherData,let index = index   else { return }
+        let data = weather.alerts[index]
+        
+        eventNameLabel.text = data.event
+        sourceLabel.text = data.senderName
+        
+        //Format data
+        dateLabel.text = "Start: \(data.dateSent) End: \(data.dateExpires)"
+        
+        imageView?.image = UIImage(named: "placeholder-image")
+        //Format IMG
+        imageView?.loadImagesUsingIndex(for: index)
     }
-
 }
+
