@@ -12,11 +12,10 @@ let imageCache = NSCache<NSNumber,UIImage>()
 
 extension UIImageView {
     
-    
     func loadImagesUsingIndex(for index: Int) {
         //Build URL and reques the ammount of images needed imgCount
         let url = URL(string: "https://picsum.photos/id/\(index)/200")!
-        image =  UIImage(named: "placeholder-image")
+        image =  UIImage(named: "placeholder-image")//Initial placeholder
         let nsIndex = NSNumber(value: index)
         
         

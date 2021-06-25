@@ -34,10 +34,13 @@ class WeatherTableViewCell: UITableViewCell {
         sourceLabel.text = data.senderName
         
         //Format data
-        dateLabel.text = "Start: \(data.dateSent) End: \(data.dateExpires)"
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        let startDate = formatter.string(from: data.dateSent)
+        let endDate = formatter.string(from: data.dateExpires)
+        dateLabel.text = "Start: \(startDate) End: \(endDate)"
         
-        imageView?.image = UIImage(named: "placeholder-image")
-        //Format IMG
+        //Get IMG
         imageView?.loadImagesUsingIndex(for: index)
     }
 }

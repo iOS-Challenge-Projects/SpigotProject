@@ -10,7 +10,7 @@ import UIKit
 class WeatherTableViewController: UITableViewController {
     // MARK: - Properties
     private var network: Network = Network()
-    
+    private var selectedCell: Int?
     
     // MARK: - Outlets
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -40,5 +40,18 @@ class WeatherTableViewController: UITableViewController {
         cell.index = indexPath.row
         cell.network = network
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedCell = indexPath.row
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailSegue"{
+            if let detailVC = segue.destination as? DetailViewController{
+                detailVC.index = selectedCell
+                detailVC.network = network
+            }
+        }
     }
 }

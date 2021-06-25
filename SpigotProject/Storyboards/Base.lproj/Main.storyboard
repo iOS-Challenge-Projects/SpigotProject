@@ -13,16 +13,59 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DetailViewController" customModule="SpigotProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgR-nB-2nh">
+                                <rect key="frame" x="0.0" y="88" width="414" height="1112"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUu-ye-ITh" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VBN-xH-Ibg">
+                                                <rect key="frame" x="107" y="25" width="200" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="0mZ-Mz-Cwx"/>
+                                                    <constraint firstAttribute="width" constant="200" id="cLU-Mh-jxx"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1200" id="RQc-5r-jiE"/>
+                                            <constraint firstItem="VBN-xH-Ibg" firstAttribute="leading" secondItem="ZUu-ye-ITh" secondAttribute="leading" constant="107" id="VdL-lB-tiv"/>
+                                            <constraint firstItem="VBN-xH-Ibg" firstAttribute="top" secondItem="ZUu-ye-ITh" secondAttribute="top" constant="25" id="aqg-19-HVx"/>
+                                            <constraint firstAttribute="trailing" secondItem="VBN-xH-Ibg" secondAttribute="trailing" constant="107" id="bFP-hf-KZe"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ZUu-ye-ITh" secondAttribute="trailing" id="KMk-eC-BWh"/>
+                                    <constraint firstItem="ZUu-ye-ITh" firstAttribute="top" secondItem="zgR-nB-2nh" secondAttribute="top" id="PGn-9C-AUy"/>
+                                    <constraint firstItem="ZUu-ye-ITh" firstAttribute="leading" secondItem="zgR-nB-2nh" secondAttribute="leading" id="Yvs-i9-ehd"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZUu-ye-ITh" secondAttribute="bottom" id="yaR-gt-Uae"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZUu-ye-ITh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="DN0-Yo-hVr"/>
+                            <constraint firstAttribute="bottom" secondItem="zgR-nB-2nh" secondAttribute="bottom" id="ifa-gy-Drj"/>
+                            <constraint firstItem="zgR-nB-2nh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vUD-Kl-YlB"/>
+                            <constraint firstItem="zgR-nB-2nh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="z5R-p0-dWx"/>
+                            <constraint firstItem="zgR-nB-2nh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="z5e-sG-dHr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="6HB-gm-Xp4"/>
+                    <size key="freeformSize" width="414" height="1200"/>
+                    <connections>
+                        <outlet property="imageView" destination="VBN-xH-Ibg" id="SKR-ZL-06N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2303" y="98"/>
+            <point key="canvasLocation" x="2302.898550724638" y="97.767857142857139"/>
         </scene>
         <!--Weather App-->
         <scene sceneID="jzF-9H-EQ5">
@@ -97,7 +140,7 @@
                                     <outlet property="imageView" destination="Su3-pB-a39" id="MjR-7D-uhg"/>
                                     <outlet property="imgView" destination="Su3-pB-a39" id="Wnu-QL-EKI"/>
                                     <outlet property="sourceLabel" destination="ciQ-P1-xz2" id="PPz-8G-XX6"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="rVQ-AO-QQA"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="DetailSegue" id="rVQ-AO-QQA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
