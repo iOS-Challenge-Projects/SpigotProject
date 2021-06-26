@@ -21,8 +21,8 @@ enum RequestType {
 class Network {
     
     var weatherData: WeatherModel?
-    var detailData: DetailModel?
-    var imagesArray: [UIImage] = []
+    var zones: [Zone] = []
+
     
     func fetchRequest(for requestType: RequestType, id: String?, type: String?, completion: @escaping (Error?) -> ()) {
         let baseURL = URL(string: "http://api.alltheapps.org")!
@@ -33,11 +33,17 @@ class Network {
             urlComponents?.path = "/weather/v3/allActiveAlerts"
             
         }else{
-            urlComponents?.path = "/weather/v3/alertZone?id=\(id!)&type=\(type!)&apiKey=FRITZ_TEMP"
+            urlComponents?.path = "/weather/v3/alertZone"
+            let zoneID = URLQueryItem(name: "id", value: id!)
+            let zoneType = URLQueryItem(name: "type", value: type!)
+            urlComponents?.queryItems = [zoneID,zoneType]
         }
         let auth = URLQueryItem(name: "apiKey", value: "FRITZ_TEMP")
         
-        urlComponents?.queryItems = [auth]
+
+        
+        
+        urlComponents?.queryItems?.append(auth)
         
         guard let requestURL = urlComponents?.url else {
             print("Error constructing URL")
@@ -68,8 +74,8 @@ class Network {
                     
                 }else if requestType == .detail {
                     
-                    let detailData = try JSONDecoder().decode(DetailModel.self, from: data)
-                    self.detailData = detailData
+                    let detailData = try JSONDecoder().decode(Zone.self, from: data)
+                    self.zones.append(detailData)
                     DispatchQueue.main.async {
                         completion(nil)
                     }
@@ -79,6 +85,5 @@ class Network {
             }
         }.resume()
     }
-    
    
 }

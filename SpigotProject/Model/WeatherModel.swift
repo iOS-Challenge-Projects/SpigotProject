@@ -16,7 +16,10 @@ struct Alerts: Codable {
     var dateSent: Date
     var dateExpires: Date
     var senderName: String
-    var img: Data?
+    var severity: String
+    var certainty: String
+    var urgency: String
+    var description: String
     var affectedZoneIDs: [AffectedZoneIDs]
 }
 
